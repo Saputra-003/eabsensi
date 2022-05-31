@@ -45,6 +45,7 @@ var DatatableBasic = (function () {
                 },
             },
         });
+        
 
         // Basic datatable
         $(".datatable-basic").DataTable();

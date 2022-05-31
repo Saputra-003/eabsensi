@@ -27,7 +27,9 @@
     <!-- Theme JS files -->
     <script src="{{ asset('global_assets/js/plugins/visualization/d3/d3.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/extensions/jquery_ui/interactions.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
+	
 
     <script src="{{ asset('js/app_copy.js')}}"></script>
     <script src="{{ asset('js/plugin.js')}}"></script>
@@ -46,7 +48,7 @@
         <div class="navbar-header navbar-dark d-none d-md-flex align-items-md-center">
             <div class="navbar-brand navbar-brand-md">
                 <a href="{{ url('home') }}" class="d-inline-block">
-                    <img src="{{ asset('global_assets/images/logo_light.png') }}" alt="">
+                    {{-- <img src="{{ asset('global_assets/images/logo_light.png') }}" alt=""> --}}
                 </a>
             </div>
 
@@ -103,7 +105,7 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="#" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
+                        <a href="{{ route('profile.index') }}" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
                         <a href="#" class="dropdown-item"><i class="icon-coins"></i> My balance</a>
                         <a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Messages <span
                                 class="badge badge-pill bg-indigo-400 ml-auto">58</span></a>

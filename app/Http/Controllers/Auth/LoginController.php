@@ -74,7 +74,7 @@ class LoginController extends Controller
         } else {
             $field = 'name';
         }
-        dd($field);
+        // dd($field);
         request()->merge([$field => $login]);
         return $field;
     }

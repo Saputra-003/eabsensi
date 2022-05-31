@@ -15,16 +15,17 @@ class ProfileFactory extends Factory
     public function definition()
     {
         $gender = ['pria', 'wanita'];
-        $study_program = ['TI', 'AK', 'AKP', 'MK', 'EK'];
+        // $study_program = ['TI', 'AK', 'AKP', 'MK', 'EK'];
 
         return [
             'user_id' => rand(1, 5),
+            'avatar' => 'avatar',
             'address' => $this->faker->address(),
             'date_of_birth' => date('d-m-Y'),
             'gender' => Arr::random($gender),
             'phone_number' =>  $this->faker->phoneNumber(),
-            'grade' => '3',
-            'study_program' => Arr::random($study_program),
+            // 'grade' => '3',
+            // 'study_program' => Arr::random($study_program),
 
         ];
     }

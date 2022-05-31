@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LecturerController;
+use App\Http\Controllers\ProfileController;
 use App\Models\User;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Route Resource
+Route::resource('profile', ProfileController::class);
 Route::resource('lecturer', LecturerController::class);
 
 // Route Testing
