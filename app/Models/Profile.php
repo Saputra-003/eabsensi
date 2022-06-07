@@ -13,10 +13,19 @@ class Profile extends Model
     //     'name',
     // ];
 
-    protected $guard = [];
+    protected $fillable = ['user_id', 'address', 'avatar', 'date_of_birth', 'gender', 'phone_number'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getPhoto()
+    {
+        if (!$this->avatar) {
+            return asset('global_assets/images/placeholders/user.png');
+        }
+
+        return asset('profile_images/' . $this->avatar);
     }
 }

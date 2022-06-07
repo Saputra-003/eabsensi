@@ -29,7 +29,7 @@
     <script src="{{ asset('global_assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/extensions/jquery_ui/interactions.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
-	
+
 
     <script src="{{ asset('js/app_copy.js')}}"></script>
     <script src="{{ asset('js/plugin.js')}}"></script>
@@ -97,15 +97,16 @@
                 <li class="nav-item dropdown dropdown-user">
                     <a href="#" class="navbar-nav-link d-flex align-items-center dropdown-toggle"
                         data-toggle="dropdown">
-                        <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"
-                            class="rounded-circle mr-2" height="34" alt="">
+                        <img src="{{ Auth::user()->profile->getPhoto() }}" class="rounded-circle mr-2" height="34"
+                            alt="">
                         <span>
                             {{ Auth::user()->name }}
                         </span>
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="{{ route('profile.index') }}" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
+                        <a href="{{ route('profile.index') }}" class="dropdown-item"><i class="icon-user-plus"></i> My
+                            profile</a>
                         <a href="#" class="dropdown-item"><i class="icon-coins"></i> My balance</a>
                         <a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Messages <span
                                 class="badge badge-pill bg-indigo-400 ml-auto">58</span></a>
@@ -185,7 +186,7 @@
                                 title="Main"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link {{ Request::is('home') ? 'active' : '' }}">
+                            <a href="{{ route('home') }}" class="nav-link {{ Request::is('home') ? 'active' : '' }}">
                                 <i class="icon-home4"></i>
                                 <span>
                                     Dashboard
