@@ -10,30 +10,30 @@
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
         type="text/css">
-    <link href="{{asset('global_assets/css/icons/icomoon/styles.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('css/bootstrap_limitless.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('css/layout.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('css/components.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('css/colors.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('global_assets/css/icons/icomoon/styles.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/bootstrap_limitless.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/layout.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/components.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/colors.min.css')}}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
-    <script src="{{asset('global_assets/js/main/jquery.min.js') }}"></script>
-    <script src="{{asset('global_assets/js/main/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{asset('global_assets/js/plugins/loaders/blockui.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/main/jquery.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/main/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/loaders/blockui.min.js') }}"></script>
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
-    <script src="{{asset('global_assets/js/plugins/visualization/d3/d3.min.js') }}"></script>
-    <script src="{{asset('global_assets/js/plugins/visualization/d3/d3_tooltip.js') }}"></script>
-    <script src="{{asset('global_assets/js/plugins/forms/styling/switchery.min.js') }}"></script>
-    <script src="{{asset('global_assets/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
-    <script src="{{asset('global_assets/js/plugins/ui/moment/moment.min.js') }}"></script>
-    <script src="{{asset('global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/visualization/d3/d3.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/extensions/jquery_ui/interactions.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
 
-    <script src="{{asset('js/app_copy.js')}}"></script>
-    <script src="{{asset('global_assets/js/demo_pages/dashboard.js') }}"></script>
+
+    <script src="{{ asset('js/app_copy.js')}}"></script>
+    <script src="{{ asset('js/plugin.js')}}"></script>
+    {{-- <script src="{{ asset('global_assets/js/demo_pages/dashboard.js') }}"></script> --}}
     <!-- /theme JS files -->
 
 </head>
@@ -48,7 +48,7 @@
         <div class="navbar-header navbar-dark d-none d-md-flex align-items-md-center">
             <div class="navbar-brand navbar-brand-md">
                 <a href="{{ url('home') }}" class="d-inline-block">
-                    <img src="{{ asset('global_assets/images/logo_light.png') }}" alt="">
+                    {{-- <img src="{{ asset('global_assets/images/logo_light.png') }}" alt=""> --}}
                 </a>
             </div>
 
@@ -97,15 +97,16 @@
                 <li class="nav-item dropdown dropdown-user">
                     <a href="#" class="navbar-nav-link d-flex align-items-center dropdown-toggle"
                         data-toggle="dropdown">
-                        <img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"
-                            class="rounded-circle mr-2" height="34" alt="">
+                        <img src="{{ Auth::user()->profile->getPhoto() }}" class="rounded-circle mr-2" height="34"
+                            alt="">
                         <span>
                             {{ Auth::user()->name }}
                         </span>
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="#" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
+                        <a href="{{ route('profile.index') }}" class="dropdown-item"><i class="icon-user-plus"></i> My
+                            profile</a>
                         <a href="#" class="dropdown-item"><i class="icon-coins"></i> My balance</a>
                         <a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Messages <span
                                 class="badge badge-pill bg-indigo-400 ml-auto">58</span></a>
@@ -185,7 +186,7 @@
                                 title="Main"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link active">
+                            <a href="{{ route('home') }}" class="nav-link {{ Request::is('home') ? 'active' : '' }}">
                                 <i class="icon-home4"></i>
                                 <span>
                                     Dashboard
@@ -196,7 +197,8 @@
                             <a href="#" class="nav-link"><i class="icon-stack"></i> <span>Data</span></a>
 
                             <ul class="nav nav-group-sub" data-submenu-title="Data">
-                                <li class="nav-item"><a href="" class="nav-link">Dosen</a>
+                                <li class="nav-item"><a href="{{ route('lecturer.index') }}"
+                                        class="nav-link {{ Request::is('lecturer') ? 'active' : '' }}">Dosen</a>
                                 </li>
                                 <li class="nav-item"><a href="" class="nav-link">Mahasiswa</a>
                                 </li>
@@ -227,9 +229,10 @@
             <div class="page-header">
                 <div class="page-header-content header-elements-md-inline">
                     <div class="page-title d-flex">
-                        <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Home</span> -
-                            Dashboard</h4>
-                        <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+                        <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">
+                                @yield('page_title')</h4>
+                        {{-- <a href="#" class="header-elements-toggle text-default d-md-none"><i
+                                class="icon-more"></i></a> --}}
                     </div>
                 </div>
             </div>
@@ -241,9 +244,11 @@
             <div class="content">
 
                 <!-- Dashboard content -->
+
                 <div class="row">
                     @yield('content')
                 </div>
+
                 <!-- /dashboard content -->
 
             </div>
@@ -266,17 +271,6 @@
                             href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
                     </span>
 
-                    <ul class="navbar-nav ml-lg-auto">
-                        <li class="nav-item"><a href="https://kopyov.ticksy.com/" class="navbar-nav-link"
-                                target="_blank"><i class="icon-lifebuoy mr-2"></i> Support</a></li>
-                        <li class="nav-item"><a href="http://demo.interface.club/limitless/docs/"
-                                class="navbar-nav-link" target="_blank"><i class="icon-file-text2 mr-2"></i> Docs</a>
-                        </li>
-                        <li class="nav-item"><a
-                                href="https://themeforest.net/item/limitless-responsive-web-application-kit/13080328?ref=kopyov"
-                                class="navbar-nav-link font-weight-semibold"><span class="text-pink-400"><i
-                                        class="icon-cart2 mr-2"></i> Purchase</span></a></li>
-                    </ul>
                 </div>
             </div>
             <!-- /footer -->

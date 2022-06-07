@@ -64,14 +64,18 @@ class LoginController extends Controller
     {
         $login = request()->input('username');
         if (is_numeric($login)) {
-            $field = 'nim';
+            if (strlen($login) == '10') {
+                $field = 'nim';
+            } else {
+                $field = 'nrp';
+            }
         } elseif (filter_var($login, FILTER_VALIDATE_EMAIL)) {
             $field = 'email';
         } else {
             $field = 'name';
         }
-        request()->merge([$field => $login]);
         // dd($field);
+        request()->merge([$field => $login]);
         return $field;
     }
 }
