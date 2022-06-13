@@ -15,8 +15,9 @@ return [
 
     'paths' => [
         resource_path('views'),
+        app_path('Http/'),
     ],
-
+    // php artisan make:controller App\Http\NamaFolder\NamaController
     /*
     |--------------------------------------------------------------------------
     | Compiled View Path

@@ -23,12 +23,7 @@
     
             <h6 class="font-weight-semibold mb-0">{{ Auth::user()->name }}</h6>
             <span class="d-block text-muted">{{ Auth::user()->usertype }}</span>
-    
-            <div class="list-icons list-icons-extended mt-3">
-                <a href="#" class="list-icons-item" data-popup="tooltip" title="Google Drive" data-container="body"><i class="icon-google-drive"></i></a>
-                <a href="#" class="list-icons-item" data-popup="tooltip" title="Twitter" data-container="body"><i class="icon-twitter"></i></a>
-                <a href="#" class="list-icons-item" data-popup="tooltip" title="Github" data-container="body"><i class="icon-github"></i></a>
-            </div>
+
         </div>
     </div>
     <!-- /user card -->

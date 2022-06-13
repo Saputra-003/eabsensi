@@ -107,11 +107,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a href="{{ route('profile.index') }}" class="dropdown-item"><i class="icon-user-plus"></i> My
                             profile</a>
-                        <a href="#" class="dropdown-item"><i class="icon-coins"></i> My balance</a>
-                        <a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Messages <span
-                                class="badge badge-pill bg-indigo-400 ml-auto">58</span></a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
+                        <a href="{{ route('changepassword') }}" class="dropdown-item"><i class="icon-lock5"></i> Change Password</a>
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" class="dropdown-item"><i
                                 class="icon-switch2"></i> {{ __('Logout') }}</a>
@@ -159,14 +155,14 @@
                     <div class="card-body">
                         <div class="media">
                             <div class="mr-3">
-                                <a href="#"><img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"
+                                <a href="#"><img src="{{ Auth::user()->profile->getPhoto() }}"
                                         width="38" height="38" class="rounded-circle" alt=""></a>
                             </div>
 
                             <div class="media-body">
-                                <div class="media-title font-weight-semibold">Victoria Baker</div>
+                                <div class="media-title font-weight-semibold">{{ auth()->user()->name }}</div>
                                 <div class="font-size-xs opacity-50">
-                                    <i class="icon-pin font-size-sm"></i> &nbsp;Santa Ana, CA
+                                    <i class="icon-pin font-size-sm"></i> &nbsp;Politeknik Aceh
                                 </div>
                             </div>
 
@@ -267,8 +263,7 @@
 
                 <div class="navbar-collapse collapse" id="navbar-footer">
                     <span class="navbar-text">
-                        &copy; 2015 - 2018. <a href="#">Limitless Web App Kit</a> by <a
-                            href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
+                        &copy; {{ date('Y') }} <a href="#">Politeknik Aceh</a>
                     </span>
 
                 </div>

@@ -61,13 +61,13 @@
                                 class="icon-circle-right2 ml-2"></i></button>
                     </div>
 
-                    <div class="form-group text-center text-muted content-divider">
+                    {{-- <div class="form-group text-center text-muted content-divider">
                         <span class="px-2">Don't have an account?</span>
-                    </div>
+                    </div> --}}
 
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <a href="{{ route('register') }}" class="btn btn-light btn-block">Sign up</a>
-                    </div>
+                    </div> --}}
 
                     <span class="form-text text-center text-muted">By continuing, you're confirming that you've
                         read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
