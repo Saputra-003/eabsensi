@@ -10,12 +10,12 @@
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
         type="text/css">
-    <link href="{{ asset('global_assets/css/icons/icomoon/styles.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/bootstrap_limitless.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/layout.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/components.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/colors.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('global_assets/css/icons/icomoon/styles.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/bootstrap_limitless.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/layout.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/components.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/colors.min.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
@@ -26,14 +26,15 @@
 
     <!-- Theme JS files -->
     <script src="{{ asset('global_assets/js/plugins/visualization/d3/d3.min.js') }}"></script>
-    <script src="{{ asset('global_assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
-    <script src="{{ asset('global_assets/js/plugins/extensions/jquery_ui/interactions.min.js') }}"></script>
-    <script src="{{ asset('global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/visualization/d3/d3_tooltip.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/forms/styling/switchery.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/ui/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
 
 
-    <script src="{{ asset('js/app_copy.js')}}"></script>
-    <script src="{{ asset('js/plugin.js')}}"></script>
-    {{-- <script src="{{ asset('global_assets/js/demo_pages/dashboard.js') }}"></script> --}}
+    <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script src="{{ asset('global_assets/js/demo_pages/dashboard.js') }}"></script>
     <!-- /theme JS files -->
 
 </head>
@@ -191,15 +192,48 @@
                         </li>
                         <li class="nav-item nav-item-submenu">
                             <a href="#" class="nav-link"><i class="icon-stack"></i> <span>Data</span></a>
-
                             <ul class="nav nav-group-sub" data-submenu-title="Data">
-                                <li class="nav-item"><a href="{{ route('lecturer.index') }}"
-                                        class="nav-link {{ Request::is('lecturer') ? 'active' : '' }}">Dosen</a>
+                                <li class="nav-item"><a href="{{ route('prodi.index') }}" class="nav-link">
+                                        Prodi
+                                    </a>
                                 </li>
-                                <li class="nav-item"><a href="" class="nav-link">Mahasiswa</a>
+                                <li class="nav-item"><a href="" class="nav-link">
+                                        Kelas
+                                    </a>
                                 </li>
-                                <li class="nav-item"><a href="" class="nav-link">Mata
-                                        Kuliah</a>
+                                <li class="nav-item"><a href="{{ route('mahasiswa.index') }}"
+                                        class="nav-link {{ Request::is('mahasiswa') ? 'active' : '' }}">
+                                        Mahasiswa
+                                    </a>
+                                </li>
+                                <li class="nav-item"><a href="" class="nav-link">
+                                        Mata Kuliah
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-submenu">
+                            <a href="#" class="nav-link"><i class="icon-stack"></i> <span>Mahasiswa</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Data-Mahasiswa">
+                                <li class="nav-item"><a href="" class="nav-link">
+                                        Akuntansi
+                                    </a>
+                                </li>
+                                <li class="nav-item"><a href="" class="nav-link">
+                                        Akuntansi Publik
+                                    </a>
+                                </li>
+                                <li class="nav-item"><a href="" class="nav-link">
+                                        Mekatronika
+                                    </a>
+                                </li>
+                                <li class="nav-item"><a href="" class="nav-link">
+                                        Teknologi Elektronika
+                                    </a>
+                                </li>
+                                <li class="nav-item"><a href="" class="nav-link">
+                                        Teknologi Informasi
+                                    </a>
                                 </li>
                             </ul>
                         </li>
@@ -275,7 +309,7 @@
 
     </div>
     <!-- /page content -->
-
+    {{-- <script type="text/javascript" src="{{ asset('js/myplugin.js') }}"></script> --}}
 </body>
 
 </html>
