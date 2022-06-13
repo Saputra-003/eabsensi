@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lecturer;
-use App\Models\User;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 
-class LecturerController extends Controller
+class MahasiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,7 @@ class LecturerController extends Controller
      */
     public function index()
     {
-        $data_dosen = User::where('userType', 'dosen')->get();
-
-        return view('admin.data_dosen', compact('data_dosen'));
+        return view('admin.data_mahasiswa');
     }
 
     /**
@@ -44,10 +41,10 @@ class LecturerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Lecturer  $lecturer
+     * @param  \App\Models\Mahasiswa  $mahasiswa
      * @return \Illuminate\Http\Response
      */
-    public function show(Lecturer $lecturer)
+    public function show(Mahasiswa $mahasiswa)
     {
         //
     }
@@ -55,10 +52,10 @@ class LecturerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Lecturer  $lecturer
+     * @param  \App\Models\Mahasiswa  $mahasiswa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Lecturer $lecturer)
+    public function edit(Mahasiswa $mahasiswa)
     {
         //
     }
@@ -67,10 +64,10 @@ class LecturerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Lecturer  $lecturer
+     * @param  \App\Models\Mahasiswa  $mahasiswa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lecturer $lecturer)
+    public function update(Request $request, Mahasiswa $mahasiswa)
     {
         //
     }
@@ -78,10 +75,10 @@ class LecturerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Lecturer  $lecturer
+     * @param  \App\Models\Mahasiswa  $mahasiswa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Lecturer $lecturer)
+    public function destroy(Mahasiswa $mahasiswa)
     {
         //
     }

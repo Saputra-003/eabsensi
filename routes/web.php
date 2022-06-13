@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LecturerController;
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\ProfileController;
 use App\Models\User;
 use GuzzleHttp\Promise\Create;
@@ -27,7 +30,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //Route Resource
 Route::resource('profile', ProfileController::class);
-Route::resource('lecturer', LecturerController::class);
+Route::resource('mahasiswa', MahasiswaController::class);
+Route::resource('prodi', ProdiController::class);
+Route::resource('kelas', KelasController::class);
 
 // Route Testing
 Route::get('template', function () {
