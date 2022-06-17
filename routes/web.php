@@ -5,6 +5,8 @@ use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Kelas;
+use App\Models\Prodi;
 use App\Models\User;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\Route;
@@ -31,7 +33,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Route Resource
 Route::resource('profile', ProfileController::class);
 Route::resource('mahasiswa', MahasiswaController::class);
-Route::resource('prodi', ProdiController::class);
+Route::resource('prodi', ProdiController::class)->middleware('auth');
 Route::resource('kelas', KelasController::class);
 
 // Route Testing
@@ -45,7 +47,21 @@ Route::get('reject', function () {
     return 'GA LEWAT BRO';
 });
 
-Route::view('dosen', 'admin.data_dosen');
+// Route::view('datatable', 'admin.data.home_datatable');
+Route::get('pro', function () {
+    // $prodi = Prodi::all();
+    $prodi = Prodi::with('kelas')->find(3);
+
+    // $kelas = $prodi->kelas()->create([
+    //     'kelas' => 'A new comment.',
+    // ]);
+    // $kelas = new Kelas(['kelas' => 'A new kelas.']);
+
+    // $prodi = Prodi::find(1);
+
+    // $prodi->kelas()->save($kelas);
+    return $prodi;
+});
 
 // Contoh Route dengan middleware //
 // Route::get('role', [App\Http\Controllers\HomeController::class, 'index'])->middleware('role:admin,editor');

@@ -9,7 +9,14 @@ class Prodi extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+    protected $fillable =
+    [
         'prodi',
     ];
+
+    public function kelas()
+    {
+        return $this->hasMany(Kelas::class);
+        // note: we can also inlcude Mobile model like: 'App\Mobile'
+    }
 }

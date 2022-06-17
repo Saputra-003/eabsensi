@@ -25,6 +25,8 @@
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
+    <script src="{{ asset('global_assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/visualization/d3/d3.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/visualization/d3/d3_tooltip.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/forms/styling/switchery.min.js') }}"></script>
@@ -34,8 +36,13 @@
 
 
     <script src="{{ asset('assets/js/app.js') }}"></script>
-    <script src="{{ asset('global_assets/js/demo_pages/dashboard.js') }}"></script>
+    <script src="{{ asset('global_assets/js/demo_pages/datatables_basic.js') }}"></script>
+    {{-- <script src="{{ asset('global_assets/js/demo_pages/dashboard.js') }}"></script> --}}
     <!-- /theme JS files -->
+
+    <!-- Extra -->
+    @yield('script')
+    <!-- /Extra -->
 
 </head>
 
@@ -156,8 +163,8 @@
                     <div class="card-body">
                         <div class="media">
                             <div class="mr-3">
-                                <a href="#"><img src="{{ Auth::user()->profile->getPhoto() }}"
-                                        width="38" height="38" class="rounded-circle" alt=""></a>
+                                <a href="#"><img src="{{ Auth::user()->profile->getPhoto() }}" width="38" height="38"
+                                        class="rounded-circle" alt=""></a>
                             </div>
 
                             <div class="media-body">
@@ -197,7 +204,7 @@
                                         Prodi
                                     </a>
                                 </li>
-                                <li class="nav-item"><a href="" class="nav-link">
+                                <li class="nav-item"><a href="{{ route('kelas.index') }}" class="nav-link">
                                         Kelas
                                     </a>
                                 </li>
@@ -275,9 +282,9 @@
 
                 <!-- Dashboard content -->
 
-                <div class="row">
+                {{-- <div class="row"> --}}
                     @yield('content')
-                </div>
+                    {{-- </div> --}}
 
                 <!-- /dashboard content -->
 
@@ -309,7 +316,6 @@
 
     </div>
     <!-- /page content -->
-    {{-- <script type="text/javascript" src="{{ asset('js/myplugin.js') }}"></script> --}}
 </body>
 
 </html>
