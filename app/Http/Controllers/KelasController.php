@@ -14,7 +14,8 @@ class KelasController extends Controller
      */
     public function index()
     {
-        //
+        $kelas = Kelas::all();
+        return view('admin.data.kelas', compact('kelas'));
     }
 
     /**
@@ -35,7 +36,8 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Kelas::create($request->all());
+        return redirect()->back();
     }
 
     /**
@@ -57,7 +59,7 @@ class KelasController extends Controller
      */
     public function edit(Kelas $kelas)
     {
-        //
+        return response()->json($kelas);
     }
 
     /**
@@ -69,7 +71,8 @@ class KelasController extends Controller
      */
     public function update(Request $request, Kelas $kelas)
     {
-        //
+        $kelas->update($request->all());
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +83,7 @@ class KelasController extends Controller
      */
     public function destroy(Kelas $kelas)
     {
-        //
+        Kelas::destroy($kelas->id);
+        return redirect()->back();
     }
 }

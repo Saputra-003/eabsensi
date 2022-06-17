@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Prodi;
 use App\Models\Profile;
 use App\Models\User;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,6 +21,7 @@ class DatabaseSeeder extends Seeder
             $profile = Profile::factory()->create();
             $user->profile()->save($profile);
         });
+        Prodi::factory(5)->create();
         // Profile::factory(5)->create();
 
         // 1 Relation
