@@ -27,6 +27,8 @@
     <!-- Theme JS files -->
     <script src="{{ asset('global_assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+
     <script src="{{ asset('global_assets/js/plugins/visualization/d3/d3.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/visualization/d3/d3_tooltip.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/forms/styling/switchery.min.js') }}"></script>
@@ -37,6 +39,8 @@
 
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script src="{{ asset('global_assets/js/demo_pages/datatables_basic.js') }}"></script>
+    <script src="{{ asset('global_assets/js/demo_pages/form_select2.js') }}"></script>
+    {{-- <script type="text/javascript" src="{{ asset('assets/js/myapp.js') }}"></script> --}}
     {{-- <script src="{{ asset('global_assets/js/demo_pages/dashboard.js') }}"></script> --}}
     <!-- /theme JS files -->
 
@@ -190,7 +194,7 @@
 
                         <!-- Main -->
                         <li class="nav-item-header">
-                            <div class="text-uppercase font-size-xs line-height-xs">Main</div> <i class="icon-menu"
+                            <div class="text-uppercase font-size-xs line-height-xs">Admin</div> <i class="icon-menu"
                                 title="Main"></i>
                         </li>
                         <li class="nav-item">
@@ -198,6 +202,14 @@
                                 <i class="icon-home4"></i>
                                 <span>
                                     Dashboard
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('register') }}" class="nav-link">
+                                <i class="icon-stack"></i>
+                                <span>
+                                    Register
                                 </span>
                             </a>
                         </li>
@@ -268,12 +280,14 @@
             <!-- Page header -->
             @auth
             <div class="page-header">
-                <div class="page-header-content header-elements-md-inline">
-                    <div class="page-title d-flex">
-                        <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">
-                                @yield('page_title')</h4>
-                        {{-- <a href="#" class="header-elements-toggle text-default d-md-none"><i
-                                class="icon-more"></i></a> --}}
+                <div class="page-header page-header-light">
+                    <div class="page-header-content header-elements-md-inline">
+                        <div class="page-title d-flex">
+                            <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">
+                                    @yield('page_title')</h4>
+                            {{-- <a href="#" class="header-elements-toggle text-default d-md-none"><i
+                                    class="icon-more"></i></a> --}}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -14,9 +14,9 @@ class ProdiFactory extends Factory
      */
     public function definition()
     {
-        $prodi = ['Akuntansi', 'Akuntansi Publik', 'Mekatronika', 'Teknologi Elektronika', 'Teknologi Informasi'];
+        // $prodi = ['Akuntansi', 'Akuntansi Publik', 'Mekatronika', 'Teknologi Elektronika', 'Teknologi Informasi'];
         return [
-            'prodi' => Arr::random($prodi),
+            'prodi' => 'Teknologi Informasi',
         ];
     }
 }

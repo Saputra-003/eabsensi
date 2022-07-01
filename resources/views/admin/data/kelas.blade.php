@@ -135,25 +135,5 @@
     $(document).ready(function(){
 
     });
-    
-    function editKelas(id) {
-        var url = '{{route("kelas.edit", ":id")}}';
-        url = url.replace(':id', id);
-        $.ajax({
-        url: url,
-        type: 'GET',
-        // data: $('#FormAjax').serialize(),
-        success: function(result) {
-            $("input[name=kelas]").val(result.kelas);
-        },
-        error: function(data) {
-            // you'd want to show your validation errors if there are any, as well
-            console.log(data);
-        }
-    });
-    var url = '{{route("kelas.update", ":id")}}';
-    url = url.replace(':id', id);
-    $('#form_edit').attr('action', url);
-    }
 </script>
 @endsection

@@ -41,12 +41,17 @@ class ProdiController extends Controller
         // return $request->all();
         // $kelas = array($request->kelas);
         // $kelas = [];
+
         $prodi = Prodi::create($request->all());
+        $jenis_kelas = $request->jenis_kelas;
+        $i = 0;
         foreach ($request->kelas as $key) {
             // array_push($kelas, $key);
             $prodi->kelas()->create([
                 'kelas' => $key,
+                'jenis_kelas' => $jenis_kelas[$i],
             ]);
+            $i++;
         }
         // return $kelas;
         return redirect()->back();
@@ -86,11 +91,12 @@ class ProdiController extends Controller
      */
     public function update(Request $request, Prodi $prodi)
     {
-        // $prodi->update($request->all());
+        $prodi->update($request->all());
+        $jenis_kelas = $request->jenis_kelas;
         $i = 0;
         $kelas = Prodi::find($prodi->id)->kelas;
         foreach ($kelas as $key) {
-            Kelas::whereId($key->id)->update(['kelas' => $request->kelas[$i]]);
+            Kelas::whereId($key->id)->update(['kelas' => $request->kelas[$i], 'jenis_kelas' => $jenis_kelas[$i]]);
             $i++;
         }
         // return $hasil;

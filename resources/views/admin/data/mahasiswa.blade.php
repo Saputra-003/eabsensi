@@ -29,18 +29,20 @@
                     <th>Prodi</th>
                     <th>Kelas</th>
                     <th>Angkatan</th>
+                    <th>Semester</th>
                     <th class="text-center">Aksi</th>
                 </tr>
             </thead>
             <tbody>
-
+                @foreach ($user as $user_item)
                 <tr>
-                    <td>1</td>
-                    <td>1234567890</td>
-                    <td>Fahmi</td>
-                    <td>TI</td>
-                    <td>3TIA</td>
-                    <td><span class="badge badge-success">2017</span></td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $user_item->nim }}</td>
+                    <td>{{ $user_item->name }}</td>
+                    <td></td>
+                    <td></td>
+                    <td><span class="badge badge-success"></span></td>
+                    <td><span class="badge badge-success"></span></td>
                     <td class="text-center">
                         <div class="list-icons">
                             <div class="dropdown">
@@ -71,6 +73,7 @@
                         </div>
                     </td>
                 </tr>
+                @endforeach
 
                 {{-- @foreach ($data_dosen as $item)
                 <tr>
@@ -103,5 +106,13 @@
     <!-- /basic datatable -->
     {{--
 </div> --}}
-@include('admin.mahasiswa_modal')
+@include('admin.modal.mahasiswa_modal')
+<script>
+    // Default initialization
+    $(document).ready(function(){
+        $('.select').select2({
+        minimumResultsForSearch: Infinity
+    });
+})
+</script>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
@@ -14,7 +15,9 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        return view('admin.data_mahasiswa');
+        $user = User::whereUsertype('Student')->get();
+
+        return view('admin.data.mahasiswa', compact('user'));
     }
 
     /**

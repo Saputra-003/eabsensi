@@ -11,6 +11,11 @@ class Kelas extends Model
 
     protected $fillable =
     [
-        'kelas',
+        'kelas', 'jenis_kelas'
     ];
+
+    public function mahasiswa()
+    {
+        return $this->hasMany(Mahasiswa::class);
+    }
 }

@@ -19,4 +19,9 @@ class Prodi extends Model
         return $this->hasMany(Kelas::class);
         // note: we can also inlcude Mobile model like: 'App\Mobile'
     }
+
+    public function mahasiswa()
+    {
+        return $this->hasMany(Mahasiswa::class);
+    }
 }

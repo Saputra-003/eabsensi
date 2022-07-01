@@ -17,7 +17,7 @@ class CreateProfilesTable extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->string('address');
-            $table->string('avatar');
+            $table->string('avatar')->nullable();
             $table->string('date_of_birth');
             $table->string('gender');
             $table->string('phone_number');

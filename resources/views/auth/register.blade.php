@@ -1,7 +1,59 @@
 @extends('layouts.app')
+@section('page_title', 'Register')
 
 @section('content')
-<div class="container">
+
+<!-- Middle alignment -->
+<div class="card">
+    <div class="card-header bg-white header-elements-inline">
+        <h6 class="card-title">Register</h6>
+        <div class="header-elements">
+            <div class="list-icons">
+                <a class="list-icons-item" data-action="collapse"></a>
+                <a class="list-icons-item" data-action="reload"></a>
+                <a class="list-icons-item" data-action="remove"></a>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex">
+        <div class="card-body justify-content-center text-center">
+            <div>
+                <i class="icon-plus3 icon-2x text-primary border-primary border-3 rounded-round p-3 mb-3"></i>
+                <h5 class="card-title">Mahasiswa</h5>
+                {{-- <p class="mb-3">Use <code>.justify-content-center</code> class to center content vertically. Add
+                    optional
+                    breakpoints to enable responsiveness</p> --}}
+                <button type="button" class="btn bg-primary-400" data-toggle="modal"
+                    data-target="#modal_large">Tambah</button>
+
+            </div>
+        </div>
+        <div class="card-body justify-content-center text-center">
+            <div>
+                <i class="icon-plus3 icon-2x text-primary border-primary border-3 rounded-round p-3 mb-3"></i>
+                <h5 class="card-title">Dosen</h5>
+                {{-- <p class="mb-3">Use <code>.justify-content-center</code> class to center content vertically. Add
+                    optional
+                    breakpoints to enable responsiveness</p> --}}
+                <button type="button" class="btn bg-primary-400" data-toggle="modal"
+                    data-target="#modal_dosen">Tambah</button>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+<!-- /middle alignment -->
+
+
+
+{{-- <div class="container"> --}}
     <!-- Content area -->
     <div class="content d-flex justify-content-center align-items-center">
 
@@ -70,8 +122,8 @@
 
 
                     <div class="form-group">
-                        <button type="submit" class="btn bg-teal-400 btn-block">Register <i
-                                class="icon-circle-right2 ml-2"></i></button>
+                        <button type="submit" class="btn bg-teal-400 btn-block">Register
+                            <i class="icon-circle-right2 ml-2"></i></button>
                     </div>
 
                     <div class="form-group text-center text-muted content-divider">
@@ -88,5 +140,8 @@
 
     </div>
     <!-- /content area -->
-</div>
+    {{--
+</div> --}}
+@include('admin.modal.register_mahasiswa')
+@include('admin.modal.register_dosen')
 @endsection

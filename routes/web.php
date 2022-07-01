@@ -6,6 +6,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Kelas;
+use App\Models\Mahasiswa;
 use App\Models\Prodi;
 use App\Models\User;
 use GuzzleHttp\Promise\Create;
@@ -30,6 +31,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/getKelas/{prodi}', [App\Http\Controllers\Auth\RegisterController::class, 'getKelas'])->name('register.getKelas');
 //Route Resource
 Route::resource('profile', ProfileController::class);
 Route::resource('mahasiswa', MahasiswaController::class);
@@ -43,8 +45,9 @@ Route::get('template', function () {
 Route::get('role', function () {
     return view('role');
 })->middleware('role:admin,user');
+
 Route::get('reject', function () {
-    return 'GA LEWAT BRO';
+    return 'GA LEWAT BRO <strong>505</strong>';
 });
 
 // Route::view('datatable', 'admin.data.home_datatable');
@@ -61,6 +64,27 @@ Route::get('pro', function () {
 
     // $prodi->kelas()->save($kelas);
     return $prodi;
+});
+Route::get('data_mahasiswa', function () {
+    // Mahasiswa::create([
+    //     'kelas_id'  =>  1,
+    //     'prodi_id'  =>  1,
+    //     'user_id'  =>  2,
+    //     'angkatan'  =>  '2017',
+    //     'semester'  =>  '6',
+    //     'status'    =>  'aktif',
+    // ]);
+
+    // return 'work';
+    // $mahasiswa = Mahasiswa::find(1)->user;
+    // return $mahasiswa;
+    $user = User::find(3);
+    $user->mahasiswa()->create([
+        'prodi_id' => '1',
+        'angkatan' => '2017',
+        'semester' => '6',
+        'status'    => 'Aktif'
+    ]);
 });
 
 // Contoh Route dengan middleware //
