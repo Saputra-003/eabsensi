@@ -19,9 +19,9 @@ class ProfileFactory extends Factory
 
         return [
             'user_id' => rand(1, 5),
-            'avatar' => 'avatar',
+            'avatar' => '',
             'address' => $this->faker->address(),
-            'date_of_birth' => date('d-m-Y'),
+            'date_of_birth' => date('Y-m-d'),
             'gender' => Arr::random($gender),
             'phone_number' =>  $this->faker->phoneNumber(),
             // 'grade' => '3',

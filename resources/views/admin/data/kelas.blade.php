@@ -6,12 +6,9 @@
 <!-- Basic datatable -->
 <div class="card">
     <div class="card-header header-elements-inline">
-        <h5 class="card-title">Data Kelas</h5>
+        <h5 class="card-title">Data Kelas {{ $kelas->kelas }} - {{ $kelas->jenis_kelas }}</h5>
         <div class="header-elements">
             <div class="list-icons">
-                <button type="button" class="btn bg-dark btn-labeled btn-labeled-left" data-toggle="modal"
-                    data-target="#modal_form_horizontal"><b><i class="icon-add"></i></b>
-                    Tambah</button>
                 {{-- <a class="list-icons-item" data-action="collapse"></a> --}}
             </div>
         </div>
@@ -20,50 +17,32 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nama Kelas</th>
-                {{-- <th></th>
-                <th></th>
-                <th></th> --}}
-                <th class="text-center">Aksi</th>
+                <th>Nim</th>
+                <th>Nama</th>
+                <th>Prodi</th>
+                <th>Kelas</th>
+                <th>Semester</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($kelas as $item)
+            @php
+            $i=0;
+            @endphp
+            @foreach ($mahasiswa as $item)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $item->kelas }}</td>
-                {{-- <td></td> --}}
-                {{-- <td></td> --}}
-                {{-- <td></td> --}}
-                <td class="text-center">
-                    <div class="list-icons">
-                        <div class="dropdown">
-                            <a href="#" class="list-icons-item" data-toggle="dropdown">
-                                <i class="icon-menu9"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modal_edit"
-                                    onclick="editkelas({{ $item->id }})">
-                                    <i class="icon-pencil"></i>
-                                    Edit
-                                </a>
-
-
-                                <a href="#" class="dropdown-item"
-                                    onclick="event.preventDefault(); document.getElementById('delete-form-{{ $item->id }}').submit();">
-                                    <i class="icon-bin"></i>
-                                    Delete
-                                </a>
-                                <form id="delete-form-{{ $item->id }}" action="{{ route('kelas.destroy', $item->id) }}"
-                                    method="POST" class="d-none">
-                                    @method('delete')
-                                    @csrf
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </td>
+                <td>{{ $item->user->nim }}</td>
+                <td>{{ $item->user->name }}</td>
+                <td>{{ $item->prodi->prodi }}</td>
+                <td>{{ $kelas->kelas }}</td>
+                {{-- <td>{{ $item->kelas[0]->kelas }}</td> --}}
+                <td>{{ $item->semester }}</td>
+                <td>{{ $item->status }}</td>
             </tr>
+            @php
+            $i++
+            @endphp
             @endforeach
         </tbody>
     </table>
@@ -135,25 +114,5 @@
     $(document).ready(function(){
 
     });
-    
-    function editKelas(id) {
-        var url = '{{route("kelas.edit", ":id")}}';
-        url = url.replace(':id', id);
-        $.ajax({
-        url: url,
-        type: 'GET',
-        // data: $('#FormAjax').serialize(),
-        success: function(result) {
-            $("input[name=kelas]").val(result.kelas);
-        },
-        error: function(data) {
-            // you'd want to show your validation errors if there are any, as well
-            console.log(data);
-        }
-    });
-    var url = '{{route("kelas.update", ":id")}}';
-    url = url.replace(':id', id);
-    $('#form_edit').attr('action', url);
-    }
 </script>
 @endsection

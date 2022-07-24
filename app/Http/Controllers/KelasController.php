@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -14,8 +15,8 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $kelas = Kelas::all();
-        return view('admin.data.kelas', compact('kelas'));
+        // $kelas = Kelas::all();
+        // return view('admin.data.kelas', compact('kelas'));
     }
 
     /**
@@ -31,7 +32,7 @@ class KelasController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -43,18 +44,29 @@ class KelasController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Kelas  $kelas
+     * @param \App\Models\Kelas $kelas
      * @return \Illuminate\Http\Response
      */
-    public function show(Kelas $kelas)
+    public function show($id)
     {
-        //
+        $mahasiswa = Mahasiswa::whereHas('kelas', function ($q) use ($id) {
+            $q->where(['kelas_id' => $id, 'status' => 'Aktif']);
+        })->get();
+
+        $kelas = Kelas::find($id);
+        return view('admin.data.kelas', compact(['mahasiswa', 'kelas']));
+
+        // Get All Who Dont Have Relation//
+        // $userId = 1;
+        // $books = Book::whereDoesntHave('users', function ($q) use ($userId) {
+        //     $q->where('user_id', $userId);
+        // })->get();
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Kelas  $kelas
+     * @param \App\Models\Kelas $kelas
      * @return \Illuminate\Http\Response
      */
     public function edit(Kelas $kelas)
@@ -65,8 +77,8 @@ class KelasController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Kelas  $kelas
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Kelas $kelas
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Kelas $kelas)
@@ -78,7 +90,7 @@ class KelasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Kelas  $kelas
+     * @param \App\Models\Kelas $kelas
      * @return \Illuminate\Http\Response
      */
     public function destroy(Kelas $kelas)

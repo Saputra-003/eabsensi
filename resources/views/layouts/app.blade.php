@@ -27,16 +27,21 @@
     <!-- Theme JS files -->
     <script src="{{ asset('global_assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
-    <script src="{{ asset('global_assets/js/plugins/visualization/d3/d3.min.js') }}"></script>
-    <script src="{{ asset('global_assets/js/plugins/visualization/d3/d3_tooltip.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+
     <script src="{{ asset('global_assets/js/plugins/forms/styling/switchery.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/ui/moment/moment.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
+    {{-- <script src="{{ asset('global_assets/js/plugins/forms/styling/switchery.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('global_assets/js/plugins/forms/styling/switch.min.js') }}"></script> --}}
 
 
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script src="{{ asset('global_assets/js/demo_pages/datatables_basic.js') }}"></script>
+    <script src="{{ asset('global_assets/js/demo_pages/form_select2.js') }}"></script>
+    <script src="{{ asset('global_assets/js/demo_pages/form_checkboxes_radios.js') }}"></script>
+    {{-- <script type="text/javascript" src="{{ asset('assets/js/myapp.js') }}"></script> --}}
     {{-- <script src="{{ asset('global_assets/js/demo_pages/dashboard.js') }}"></script> --}}
     <!-- /theme JS files -->
 
@@ -186,7 +191,7 @@
 
                         <!-- Main -->
                         <li class="nav-item-header">
-                            <div class="text-uppercase font-size-xs line-height-xs">Main</div> <i class="icon-menu"
+                            <div class="text-uppercase font-size-xs line-height-xs">Admin</div> <i class="icon-menu"
                                 title="Main"></i>
                         </li>
                         <li class="nav-item">
@@ -197,6 +202,26 @@
                                 </span>
                             </a>
                         </li>
+                        @if (auth()->user()->usertype == 'Dosen')
+                        <li class="nav-item">
+                            <a href="{{ route('absensi.index') }}"
+                                class="nav-link {{ Request::is('absensi') ? 'active' : '' }}">
+                                <i class="icon-book"></i>
+                                <span>
+                                    Absensi
+                                </span>
+                            </a>
+                        </li>
+                        @endif
+                        {{-- <li class="nav-item">
+                            <a href="{{ route('register') }}" class="nav-link">
+                                <i class="icon-stack"></i>
+                                <span>
+                                    Register
+                                </span>
+                            </a>
+                        </li> --}}
+                        @if (auth()->user()->usertype == 'Admin')
                         <li class="nav-item nav-item-submenu">
                             <a href="#" class="nav-link"><i class="icon-stack"></i> <span>Data</span></a>
                             <ul class="nav nav-group-sub" data-submenu-title="Data">
@@ -204,46 +229,37 @@
                                         Prodi
                                     </a>
                                 </li>
-                                <li class="nav-item"><a href="{{ route('kelas.index') }}" class="nav-link">
+                                {{-- <li class="nav-item"><a href="{{ route('kelas.index') }}" class="nav-link">
                                         Kelas
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item"><a href="{{ route('mahasiswa.index') }}"
                                         class="nav-link {{ Request::is('mahasiswa') ? 'active' : '' }}">
                                         Mahasiswa
                                     </a>
                                 </li>
-                                <li class="nav-item"><a href="" class="nav-link">
+                                <li class="nav-item"><a href="{{ route('dosen.index') }}"
+                                        class="nav-link {{ Request::is('dosen') ? 'active' : '' }}">
+                                        Dosen
+                                    </a>
+                                </li>
+                                {{-- <li class="nav-item"><a href="{{ route('semester.index') }}"
+                                        class="nav-link {{ Request::is('semester') ? 'active' : '' }}">
+                                        Semester
+                                    </a>
+                                </li> --}}
+                                <li class="nav-item"><a href="{{ route('course.index') }}"
+                                        class="nav-link {{ Request::is('course') ? 'active' : '' }}">
                                         Mata Kuliah
                                     </a>
                                 </li>
+                                {{-- <li class="nav-item"><a href="" class="nav-link">
+                                        Mata Kuliah
+                                    </a>
+                                </li> --}}
                             </ul>
                         </li>
-                        <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="icon-stack"></i> <span>Mahasiswa</span></a>
-                            <ul class="nav nav-group-sub" data-submenu-title="Data-Mahasiswa">
-                                <li class="nav-item"><a href="" class="nav-link">
-                                        Akuntansi
-                                    </a>
-                                </li>
-                                <li class="nav-item"><a href="" class="nav-link">
-                                        Akuntansi Publik
-                                    </a>
-                                </li>
-                                <li class="nav-item"><a href="" class="nav-link">
-                                        Mekatronika
-                                    </a>
-                                </li>
-                                <li class="nav-item"><a href="" class="nav-link">
-                                        Teknologi Elektronika
-                                    </a>
-                                </li>
-                                <li class="nav-item"><a href="" class="nav-link">
-                                        Teknologi Informasi
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        @endif
                         <!-- /main -->
 
                     </ul>
@@ -264,12 +280,14 @@
             <!-- Page header -->
             @auth
             <div class="page-header">
-                <div class="page-header-content header-elements-md-inline">
-                    <div class="page-title d-flex">
-                        <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">
-                                @yield('page_title')</h4>
-                        {{-- <a href="#" class="header-elements-toggle text-default d-md-none"><i
-                                class="icon-more"></i></a> --}}
+                <div class="page-header page-header-light">
+                    <div class="page-header-content header-elements-md-inline">
+                        <div class="page-title d-flex">
+                            <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">
+                                    @yield('page_title')</h4>
+                            {{-- <a href="#" class="header-elements-toggle text-default d-md-none"><i
+                                    class="icon-more"></i></a> --}}
+                        </div>
                     </div>
                 </div>
             </div>
