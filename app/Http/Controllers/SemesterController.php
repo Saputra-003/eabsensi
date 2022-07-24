@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Course;
+use App\Models\Semester;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class SemesterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $course = Course::all();
-        return view('admin.data.course', compact('course'));
+        $semester = Semester::all();
+        return view('admin.data.semester', compact('semester'));
     }
 
     /**
@@ -36,18 +36,16 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        Course::create($request->all());
-        return redirect()->back();
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\Semester  $semester
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show(Semester $semester)
     {
         //
     }
@@ -55,37 +53,34 @@ class CourseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\Semester  $semester
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit(Semester $semester)
     {
-        return response()->json($course);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\Semester  $semester
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, Semester $semester)
     {
-        $course->update($request->all());
-        return redirect()->back();
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\Semester  $semester
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy(Semester $semester)
     {
-        // dd($course);
-        Course::destroy($course->id);
-        return redirect()->back();
+        //
     }
 }

@@ -7,7 +7,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <form action="{{ route('register') }}" method="POST">
+            <form action="{{ route('mahasiswa.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <!-- 2 columns form -->
@@ -15,8 +15,8 @@
                         <div class="col-md-6">
                             <fieldset>
                                 <legend class="font-weight-semibold"><i class="icon-reading mr-2"></i> Personal
-                                    details</legend>
-                                <input type="hidden" name="data" value="mahasiswa">
+                                    details
+                                </legend>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Nama:</label>
                                     <div class="col-lg-9">
@@ -42,6 +42,12 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label">Angkatan:</label>
+                                    <div class="col-lg-9">
+                                        <input type="text" name="angkatan" class="form-control">
+                                    </div>
+                                </div>
                             </fieldset>
                         </div>
 
@@ -53,30 +59,38 @@
                                     <label class="col-lg-3 col-form-label">Prodi:</label>
                                     <div class="col-lg-9">
                                         <select name="prodi_id" class="form-control select" data-fouc>
-                                            <option>Select Prodi</option>
-                                            @foreach ($prodi as $item)
+                                            <option>Pilih Prodi</option>
+                                            @foreach ($data['prodi'] as $item)
                                             <option value="{{ $item->id }}">{{ $item->prodi }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                {{-- <div class="form-group row">
+
+                                <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">K.Teori:</label>
                                     <div class="col-lg-9">
                                         <select id="teori" name="jenis_kelas[]" class="form-control select" data-fouc>
-                                            <option>---</option>
+                                            <option>Pilih Kelas Teori</option>
+                                            @foreach ($data['teori'] as $item)
+                                            <option value="{{ $item->id }}">{{ $item->kelas }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">K.Praktek:</label>
                                     <div class="col-lg-9">
                                         <select id="praktikum" name="jenis_kelas[]" class="form-control select"
                                             data-fouc>
-                                            <option>---</option>
+                                            <option>Pilih Kelas Praktikum</option>
+                                            @foreach ($data['praktikum'] as $item)
+                                            <option value="{{ $item->id }}">{{ $item->kelas }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
-                                </div> --}}
+                                </div>
 
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label">Semester:</label>
@@ -84,12 +98,7 @@
                                         <input type="text" name="semester" class="form-control">
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label">Angkatan:</label>
-                                    <div class="col-lg-9">
-                                        <input type="text" name="angkatan" class="form-control">
-                                    </div>
-                                </div>
+
                             </fieldset>
                         </div>
                     </div>
@@ -107,16 +116,16 @@
 <!-- /large modal -->
 
 <script>
-    $( document ).ready(function() {
+    $(document).ready(function () {
         // $("select[name='prodi_id']").on('change', function() {
         // alert( this.value );
-        // var url = '{{route("register.getKelas", ":id")}}';
+        {{--// var url = '{{route("register.getKelas", ":id")}}';--}}
         // url = url.replace(':id', this.value);
         // $.get(url,
         // function(data, status){
         //     console.log(data);
-        //     $("#teori option").remove();  
-        //     $("#praktikum option").remove();  
+        //     $("#teori option").remove();
+        //     $("#praktikum option").remove();
         //     data[0].forEach(element => {
         //         $("#teori").append(
         //             `
@@ -133,5 +142,5 @@
         //     });
         // });
         // });
-});
+    });
 </script>

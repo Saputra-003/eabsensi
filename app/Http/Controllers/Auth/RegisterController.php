@@ -34,7 +34,7 @@ class RegisterController extends Controller
      * @var string
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
-    protected $redirectTo = '/register';
+    protected $redirectTo = '/mahasiswa';
 
     /**
      * Create a new controller instance.
@@ -60,7 +60,7 @@ class RegisterController extends Controller
     /**
      * Handle a registration request for the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
     public function register(Request $request)
@@ -83,7 +83,7 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -98,7 +98,7 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \App\Models\User
      */
     protected function create(array $data)
@@ -110,35 +110,36 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'nim' => $data['nim'],
                 'password' => Hash::make($data['nim']),
-                'usertype'  =>  'Student',
+                'usertype' => 'Student',
             ]);
             $user->profile()->create([
-                'address'   =>  'null',
-                'avatar'   =>  '',
-                'date_of_birth'   =>  date('Y-m-d'),
-                'gender'    =>  'null',
-                'phone_number'  =>  'null'
+                'address' => 'null',
+                'avatar' => '',
+                'date_of_birth' => date('Y-m-d'),
+                'gender' => 'null',
+                'phone_number' => 'null'
             ]);
-            $user->mahasiswa()->create([
+            $mahasiswa = $user->mahasiswa()->create([
                 'prodi_id' => $data['prodi_id'],
                 'angkatan' => $data['angkatan'],
                 'semester' => $data['semester'],
-                'status'    => 'Aktif'
+                'status' => 'Aktif'
             ]);
+            $mahasiswa->kelas()->sync($data['jenis_kelas']);
         } else {
             $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'nim' => $data['nim'],
                 'password' => Hash::make($data['nim']),
-                'usertype'  =>  'Dosen',
+                'usertype' => 'Dosen',
             ]);
             $user->profile()->create([
-                'address'   =>  'null',
-                'avatar'   =>  '',
-                'date_of_birth'   =>  date('Y-m-d'),
-                'gender'    =>  'null',
-                'phone_number'  =>  'null'
+                'address' => 'null',
+                'avatar' => '',
+                'date_of_birth' => date('Y-m-d'),
+                'gender' => 'null',
+                'phone_number' => 'null'
             ]);
         }
     }

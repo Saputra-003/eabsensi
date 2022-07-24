@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Course;
 use App\Models\Kelas;
 use App\Models\Mahasiswa;
 use App\Models\Prodi;
@@ -19,7 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(3)->create()->each(function ($user) {
+        User::factory(1)->create()->each(function ($user) {
             $profile = Profile::factory()->create();
             $user->profile()->save($profile);
         });
@@ -34,20 +35,16 @@ class DatabaseSeeder extends Seeder
 
             ]);
         }
-        Mahasiswa::create([
-            'prodi_id'  =>  1,
-            'user_id'  =>  2,
-            'angkatan'  =>  '2017',
-            'semester'  =>  '6',
-            'status'    =>  'aktif',
-        ]);
-        // Prodi::factory(1)->create(function ($prodi) {
-        //     $kelas = array("1TIA", "2TIA", "3TIA");
-        //     foreach ($kelas as $value) {
-        //         $prodi->kelas()->save($value);
-        //     }
-        // });
-        // Profile::factory(5)->create();
+        $array_course = array(
+            ['course_code' => 'TI1', 'course' => 'Basis Data'],
+            ['course_code' => 'TI2', 'course' => 'Sistem Digital'],
+            ['course_code' => 'TI3', 'course' => 'Pemrograman Framework'],
+            ['course_code' => 'TI4', 'course' => 'Android'],
+            ['course_code' => 'TI5', 'course' => 'Rekayasa Web'],
+        );
+        foreach ($array_course as $value) {
+            Course::create($value);
+        }
 
         // 1 Relation
         // $users = factory(App\User::class, 3)

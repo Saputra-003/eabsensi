@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Course;
+use App\Models\Absensi;
+use App\Models\Kelas;
+use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class AbsensiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +17,9 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $course = Course::all();
-        return view('admin.data.course', compact('course'));
+        $dosen = User::find(Auth::id())->course;
+        // return $dosen->first()->kelas()->first();
+        return view('dosen.absensi', compact('dosen'));
     }
 
     /**
@@ -36,56 +40,57 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        Course::create($request->all());
-        return redirect()->back();
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\Absensi  $absensi
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show($id)
     {
-        //
+        $kelas = Kelas::find($id);
+        return view('dosen.absensi_kelas', compact('kelas'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\Absensi  $absensi
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit(Absensi $absensi)
     {
-        return response()->json($course);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\Absensi  $absensi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, Absensi $absensi)
     {
-        $course->update($request->all());
-        return redirect()->back();
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\Absensi  $absensi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy(Absensi $absensi)
     {
-        // dd($course);
-        Course::destroy($course->id);
-        return redirect()->back();
+        //
+    }
+
+    public function tampil_absensi_mahasiswa($id)
+    {
+        return $id;
     }
 }

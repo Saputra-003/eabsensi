@@ -29,17 +29,18 @@
     <script src="{{ asset('global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
 
-    <script src="{{ asset('global_assets/js/plugins/visualization/d3/d3.min.js') }}"></script>
-    <script src="{{ asset('global_assets/js/plugins/visualization/d3/d3_tooltip.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/forms/styling/switchery.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/ui/moment/moment.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
+    {{-- <script src="{{ asset('global_assets/js/plugins/forms/styling/switchery.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('global_assets/js/plugins/forms/styling/switch.min.js') }}"></script> --}}
 
 
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script src="{{ asset('global_assets/js/demo_pages/datatables_basic.js') }}"></script>
     <script src="{{ asset('global_assets/js/demo_pages/form_select2.js') }}"></script>
+    <script src="{{ asset('global_assets/js/demo_pages/form_checkboxes_radios.js') }}"></script>
     {{-- <script type="text/javascript" src="{{ asset('assets/js/myapp.js') }}"></script> --}}
     {{-- <script src="{{ asset('global_assets/js/demo_pages/dashboard.js') }}"></script> --}}
     <!-- /theme JS files -->
@@ -205,14 +206,26 @@
                                 </span>
                             </a>
                         </li>
+                        @if (auth()->user()->usertype == 'Dosen')
                         <li class="nav-item">
+                            <a href="{{ route('absensi.index') }}"
+                                class="nav-link {{ Request::is('absensi') ? 'active' : '' }}">
+                                <i class="icon-book"></i>
+                                <span>
+                                    Absensi
+                                </span>
+                            </a>
+                        </li>
+                        @endif
+                        {{-- <li class="nav-item">
                             <a href="{{ route('register') }}" class="nav-link">
                                 <i class="icon-stack"></i>
                                 <span>
                                     Register
                                 </span>
                             </a>
-                        </li>
+                        </li> --}}
+                        @if (auth()->user()->usertype == 'Admin')
                         <li class="nav-item nav-item-submenu">
                             <a href="#" class="nav-link"><i class="icon-stack"></i> <span>Data</span></a>
                             <ul class="nav nav-group-sub" data-submenu-title="Data">
@@ -220,46 +233,37 @@
                                         Prodi
                                     </a>
                                 </li>
-                                <li class="nav-item"><a href="{{ route('kelas.index') }}" class="nav-link">
+                                {{-- <li class="nav-item"><a href="{{ route('kelas.index') }}" class="nav-link">
                                         Kelas
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item"><a href="{{ route('mahasiswa.index') }}"
                                         class="nav-link {{ Request::is('mahasiswa') ? 'active' : '' }}">
                                         Mahasiswa
                                     </a>
                                 </li>
-                                <li class="nav-item"><a href="" class="nav-link">
+                                <li class="nav-item"><a href="{{ route('dosen.index') }}"
+                                        class="nav-link {{ Request::is('dosen') ? 'active' : '' }}">
+                                        Dosen
+                                    </a>
+                                </li>
+                                {{-- <li class="nav-item"><a href="{{ route('semester.index') }}"
+                                        class="nav-link {{ Request::is('semester') ? 'active' : '' }}">
+                                        Semester
+                                    </a>
+                                </li> --}}
+                                <li class="nav-item"><a href="{{ route('course.index') }}"
+                                        class="nav-link {{ Request::is('course') ? 'active' : '' }}">
                                         Mata Kuliah
                                     </a>
                                 </li>
+                                {{-- <li class="nav-item"><a href="" class="nav-link">
+                                        Mata Kuliah
+                                    </a>
+                                </li> --}}
                             </ul>
                         </li>
-                        <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="icon-stack"></i> <span>Mahasiswa</span></a>
-                            <ul class="nav nav-group-sub" data-submenu-title="Data-Mahasiswa">
-                                <li class="nav-item"><a href="" class="nav-link">
-                                        Akuntansi
-                                    </a>
-                                </li>
-                                <li class="nav-item"><a href="" class="nav-link">
-                                        Akuntansi Publik
-                                    </a>
-                                </li>
-                                <li class="nav-item"><a href="" class="nav-link">
-                                        Mekatronika
-                                    </a>
-                                </li>
-                                <li class="nav-item"><a href="" class="nav-link">
-                                        Teknologi Elektronika
-                                    </a>
-                                </li>
-                                <li class="nav-item"><a href="" class="nav-link">
-                                        Teknologi Informasi
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        @endif
                         <!-- /main -->
 
                     </ul>
@@ -322,8 +326,7 @@
 
                 <div class="navbar-collapse collapse" id="navbar-footer">
                     <span class="navbar-text">
-                        &copy; 2015 - 2018. <a href="#">Limitless Web App Kit</a> by <a
-                            href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
+                        &copy; 2022.
                     </span>
 
                 </div>
